@@ -13,10 +13,11 @@ document.addEventListener("DOMContentLoaded", () => {
   };
 
   window.closeModal = function () {
-    document.getElementById("enquiryModal").style.display = "none";
+    const modals = document.querySelectorAll(".modal");
+    modals.forEach(modal => modal.style.display = "none");
   };
 
-  // Smooth scrolling for anchor links
+  // Smooth scrolling
   document.querySelectorAll("nav a").forEach(anchor => {
     anchor.addEventListener("click", function (e) {
       e.preventDefault();
@@ -27,16 +28,14 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  // Simulate Mutahir's birthday for testing (May 16, 2025)
-  window.onload = function () {
-    const today = new Date(2025, 4, 16); // May 16, 2025 (Note: Month is 0-indexed, so 4 = May)
-    const isBirthday =
-      today.getDate() === 16 &&
-      today.getMonth() === 4 && // May = 4
-      today.getFullYear() === 2025;
+  // 🎂 Show Birthday Modal (Simulated)
+  const today = new Date(2025, 4, 16); // May 16, 2025
+  const isBirthday = today.getDate() === 16 && today.getMonth() === 4;
 
-    if (isBirthday) {
-      document.getElementById("birthdayModal").style.display = "block";
+  if (isBirthday) {
+    const modal = document.getElementById("birthdayModal");
+    if (modal) {
+      modal.style.display = "block";
     }
-  };
+  }
 });
