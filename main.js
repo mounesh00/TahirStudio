@@ -1,13 +1,24 @@
 document.addEventListener("DOMContentLoaded", () => {
-  console.log("Tahir.Studio site loaded!");
+  console.log("✅ Tahir.Studio site loaded!");
 
-  // Smooth scrolling
-  document.querySelectorAll("nav a").forEach(anchor => {
-    anchor.addEventListener("click", function (e) {
+  // Smooth scrolling for nav links
+  const navLinks = document.querySelectorAll("nav a[href^='#']");
+
+  navLinks.forEach(link => {
+    link.addEventListener("click", function (e) {
       e.preventDefault();
-      document.querySelector(this.getAttribute("href")).scrollIntoView({
-        behavior: "smooth",
-      });
+
+      const targetId = this.getAttribute("href");
+      const targetElement = document.querySelector(targetId);
+
+      if (targetElement) {
+        targetElement.scrollIntoView({
+          behavior: "smooth",
+          block: "start"
+        });
+      } else {
+        console.warn(`⚠️ Section not found: ${targetId}`);
+      }
     });
   });
 });
