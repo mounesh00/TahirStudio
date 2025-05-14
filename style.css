@@ -10,8 +10,8 @@ body {
 }
 
 .navbar {
-  background-color: black;
-  color: white;
+  background-color: #000;
+  color: #fff;
   padding: 15px 20px;
   display: flex;
   justify-content: space-between;
@@ -38,21 +38,29 @@ body {
   margin: 0;
 }
 
-.navbar li {
-  cursor: pointer;
-}
-
-.navbar a {
+.navbar li a {
   color: white;
   text-decoration: none;
+  font-weight: bold;
+}
+
+.book-btn {
+  background-color: #facc15;
+  color: #000;
+  padding: 8px 16px;
+  border: none;
+  font-weight: bold;
+  border-radius: 6px;
+  cursor: pointer;
+  margin-left: auto;
 }
 
 .content {
   padding: 20px;
+  text-align: center;
 }
 
 h2 {
-  text-align: center;
   color: #1f2937;
   font-size: 1.8em;
 }
@@ -69,15 +77,6 @@ video {
   box-shadow: 0 4px 12px rgba(0,0,0,0.2);
 }
 
-button {
-  padding: 12px 24px;
-  font-size: 1rem;
-  background: #facc15;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-}
-
 /* Modal */
 .modal {
   display: none;
@@ -90,7 +89,6 @@ button {
   height: 100%;
   overflow: auto;
   background-color: rgba(0, 0, 0, 0.5);
-  animation: fadeIn 0.5s ease-in;
 }
 
 .modal-content {
@@ -102,16 +100,6 @@ button {
   max-width: 500px;
   text-align: center;
   border-radius: 10px;
-  animation: slideDown 0.5s ease-out;
-}
-
-.modal-content input,
-.modal-content textarea {
-  width: 100%;
-  padding: 10px;
-  margin-bottom: 10px;
-  border-radius: 6px;
-  border: 1px solid #ccc;
 }
 
 .close-button {
@@ -123,26 +111,24 @@ button {
   padding: 5px;
 }
 
-@keyframes fadeIn {
-  from {opacity: 0;}
-  to {opacity: 1;}
-}
-
-@keyframes slideDown {
-  from {transform: translateY(-50px); opacity: 0;}
-  to {transform: translateY(0); opacity: 1;}
+/* Footer */
+footer {
+  background: #222;
+  color: #fff;
+  text-align: center;
+  padding: 1rem;
+  font-size: 0.95rem;
 }
 
 /* Responsive */
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 768px) {
   .menu-toggle {
     display: block;
   }
 
   .navbar ul {
-    flex-direction: column;
-    background: black;
     display: none;
+    flex-direction: column;
     width: 100%;
     margin-top: 10px;
   }
@@ -151,12 +137,15 @@ button {
     display: flex;
   }
 
-  h2 {
-    font-size: 1.4em;
+  .video-wrapper {
+    padding: 0 1rem;
   }
 
-  .modal-content {
-    width: 90%;
-    padding: 20px;
+  .book-btn {
+    margin-top: 10px;
+  }
+
+  h2 {
+    font-size: 1.4em;
   }
 }

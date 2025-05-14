@@ -4,35 +4,23 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Tahir.Studio</title>
-  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="style.css" />
+  <script src="main.js" defer></script>
 </head>
 <body>
 
-  <!-- 🎉 Birthday Modal -->
-  <div id="birthdayModal" class="modal">
-    <div class="modal-content">
-      <span class="close-button" onclick="closeModal()">&times;</span>
-      <h2>Happy Birthday, Mutahir Hukkeri!</h2>
-      <p>Wishing you a year full of magic, moments, and movies!</p>
-    </div>
-  </div>
-
-  <!-- 📌 Enquiry Modal -->
+  <!-- Modal -->
   <div id="enquiryModal" class="modal">
     <div class="modal-content">
-      <span class="close-button" onclick="closeEnquiryModal()">&times;</span>
-      <h2>Enquiry Form</h2>
-      <form id="enquiryForm">
-        <input type="text" placeholder="Your Name" required />
-        <input type="email" placeholder="Email" required />
-        <input type="tel" placeholder="Phone Number" required />
-        <textarea placeholder="Message..." rows="4"></textarea>
-        <button type="submit">Submit</button>
-      </form>
+      <span class="close-button" onclick="closeModal()">&times;</span>
+      <h2>Book Your Shoot</h2>
+      <p><strong>Email:</strong> contact@tahirstudio.com</p>
+      <p><strong>Phone:</strong> +91-7349107886</p>
+      <p>We look forward to capturing your special moments!</p>
     </div>
   </div>
 
-  <!-- 🔝 Navbar -->
+  <!-- Navbar -->
   <div class="navbar">
     <div class="navbar-title">Tahir.Studio</div>
     <div class="menu-toggle" onclick="toggleMenu()">☰</div>
@@ -42,39 +30,34 @@
       <li><a href="#videos">Videos</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
+    <button class="book-btn" onclick="openModal()">Book Now</button>
   </div>
 
-  <!-- 📸 Content -->
+  <!-- Main Content -->
   <div class="content" id="home">
-    <h2 id="videos">Behind the Scenes</h2>
-    <div class="video-wrapper">
-      <video src="videos/behind-scenes.mp4" controls></video>
-    </div>
+    <h2>Welcome to Tahir.Studio</h2>
+    <p>Capturing moments that last a lifetime</p>
+  </div>
 
+  <div class="content" id="videos">
+    <h2>Behind the Scenes</h2>
+    <div class="video-wrapper">
+      <video src="videos/bts-wedding.mp4" controls></video>
+    </div>
     <h2>Wedding Cinematic</h2>
     <div class="video-wrapper">
-      <video src="videos/wedding-cinematic.mp4" controls></video>
+      <video src="videos/bts2-prewedding.mp4" controls></video>
     </div>
+   
 
-    <h2>Pre-Wedding Highlights</h2>
-    <div class="video-wrapper">
-      <video src="videos/pre-wedding.mp4" controls></video>
-    </div>
-
-    <div style="text-align: center; margin-top: 2rem;">
-      <button onclick="openEnquiryModal()">📸 Book Now</button>
-    </div>
-  </div>
-
-  <!-- 📞 Contact -->
   <div class="content" id="contact">
     <h2>Contact Us</h2>
     <p><strong>Email:</strong> contact@tahirstudio.com</p>
     <p><strong>Phone:</strong> +91-7349107886</p>
-    <p>We look forward to capturing your special moments!</p>
   </div>
 
-  <!-- ⚙️ JavaScript -->
-  <script src="script.js"></script>
+  <footer>
+    <p>&copy; 2025 Tahir.Studio. All rights reserved.</p>
+  </footer>
 </body>
 </html>
