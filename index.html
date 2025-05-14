@@ -4,156 +4,11 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Tahir.Studio</title>
-  <style>
-    * {
-      box-sizing: border-box;
-    }
-
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-      background: #f9fafb;
-    }
-
-    header {
-      background-color: black;
-      color: white;
-      padding: 15px 20px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .navbar-title {
-      font-size: 20px;
-      font-weight: bold;
-    }
-
-    .menu-toggle {
-      font-size: 24px;
-      cursor: pointer;
-      display: none;
-    }
-
-    nav ul {
-      list-style: none;
-      display: flex;
-      gap: 20px;
-      padding: 0;
-      margin: 0;
-    }
-
-    nav li {
-      cursor: pointer;
-    }
-
-    nav a {
-      text-decoration: none;
-      color: white;
-      font-weight: bold;
-    }
-
-    .content {
-      padding: 20px;
-    }
-
-    h2 {
-      text-align: center;
-      color: #1f2937;
-      font-size: 1.8em;
-      margin-top: 2rem;
-    }
-
-    .video-wrapper {
-      margin: 20px auto;
-      max-width: 600px;
-    }
-
-    video {
-      width: 100%;
-      height: auto;
-      border-radius: 8px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-    }
-
-    /* Modal */
-    .modal {
-      display: none;
-      position: fixed;
-      z-index: 1000;
-      padding-top: 100px;
-      left: 0;
-      top: 0;
-      width: 100%;
-      height: 100%;
-      overflow: auto;
-      background-color: rgba(0, 0, 0, 0.5);
-      animation: fadeIn 1s ease-in;
-    }
-
-    .modal-content {
-      background-color: #fff4cc;
-      margin: auto;
-      padding: 30px;
-      border: 2px solid #facc15;
-      width: 80%;
-      max-width: 500px;
-      text-align: center;
-      border-radius: 10px;
-      animation: slideDown 0.5s ease-out;
-    }
-
-    .close-button {
-      color: #333;
-      float: right;
-      font-size: 32px;
-      font-weight: bold;
-      cursor: pointer;
-    }
-
-    @keyframes fadeIn {
-      from {opacity: 0;}
-      to {opacity: 1;}
-    }
-
-    @keyframes slideDown {
-      from {transform: translateY(-50px); opacity: 0;}
-      to {transform: translateY(0); opacity: 1;}
-    }
-
-    /* Responsive */
-    @media screen and (max-width: 600px) {
-      .menu-toggle {
-        display: block;
-      }
-
-      nav ul {
-        flex-direction: column;
-        background: black;
-        display: none;
-        width: 100%;
-        margin-top: 10px;
-      }
-
-      nav ul.show {
-        display: flex;
-      }
-
-      h2 {
-        font-size: 1.4em;
-      }
-
-      .modal-content {
-        width: 90%;
-        padding: 20px;
-      }
-    }
-  </style>
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
 
-  <!-- 🎉 Modal -->
+  <!-- 🎉 Birthday Modal -->
   <div id="birthdayModal" class="modal">
     <div class="modal-content">
       <span class="close-button" onclick="closeModal()">&times;</span>
@@ -162,58 +17,64 @@
     </div>
   </div>
 
-  <!-- 🧭 Navbar -->
-  <header>
+  <!-- 📌 Enquiry Modal -->
+  <div id="enquiryModal" class="modal">
+    <div class="modal-content">
+      <span class="close-button" onclick="closeEnquiryModal()">&times;</span>
+      <h2>Enquiry Form</h2>
+      <form id="enquiryForm">
+        <input type="text" placeholder="Your Name" required />
+        <input type="email" placeholder="Email" required />
+        <input type="tel" placeholder="Phone Number" required />
+        <textarea placeholder="Message..." rows="4"></textarea>
+        <button type="submit">Submit</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- 🔝 Navbar -->
+  <div class="navbar">
     <div class="navbar-title">Tahir.Studio</div>
     <div class="menu-toggle" onclick="toggleMenu()">☰</div>
-    <nav>
-      <ul id="navbarMenu">
-        <li><a href="#home">Home</a></li>
-        <li><a href="#portfolio">Portfolio</a></li>
-        <li><a href="#videos">Videos</a></li>
-        <li><a href="#contact">Contact</a></li>
-      </ul>
-    </nav>
-  </header>
+    <ul id="navbarMenu">
+      <li><a href="#home">Home</a></li>
+      <li><a href="#portfolio">Portfolio</a></li>
+      <li><a href="#videos">Videos</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
 
-  <!-- 📸 Main Content -->
-  <main class="content">
-    <section id="videos">
-      <h2>Behind the Scenes</h2>
-      <div class="video-wrapper">
-        <video src="videos/behind-scenes.mp4" controls></video>
-      </div>
+  <!-- 📸 Content -->
+  <div class="content" id="home">
+    <h2 id="videos">Behind the Scenes</h2>
+    <div class="video-wrapper">
+      <video src="videos/behind-scenes.mp4" controls></video>
+    </div>
 
-      <h2>Wedding Cinematic</h2>
-      <div class="video-wrapper">
-        <video src="videos/wedding-cinematic.mp4" controls></video>
-      </div>
+    <h2>Wedding Cinematic</h2>
+    <div class="video-wrapper">
+      <video src="videos/wedding-cinematic.mp4" controls></video>
+    </div>
 
-      <h2>Pre-Wedding Highlights</h2>
-      <div class="video-wrapper">
-        <video src="videos/pre-wedding.mp4" controls></video>
-      </div>
-    </section>
-  </main>
+    <h2>Pre-Wedding Highlights</h2>
+    <div class="video-wrapper">
+      <video src="videos/pre-wedding.mp4" controls></video>
+    </div>
 
-  <!-- 🧠 Script -->
-  <script>
-    function closeModal() {
-      document.getElementById("birthdayModal").style.display = "none";
-    }
+    <div style="text-align: center; margin-top: 2rem;">
+      <button onclick="openEnquiryModal()">📸 Book Now</button>
+    </div>
+  </div>
 
-    function toggleMenu() {
-      const menu = document.getElementById("navbarMenu");
-      menu.classList.toggle("show");
-    }
+  <!-- 📞 Contact -->
+  <div class="content" id="contact">
+    <h2>Contact Us</h2>
+    <p><strong>Email:</strong> contact@tahirstudio.com</p>
+    <p><strong>Phone:</strong> +91-7349107886</p>
+    <p>We look forward to capturing your special moments!</p>
+  </div>
 
-    window.onload = function () {
-      const today = new Date();
-      if (today.getDate() === 16 && today.getMonth() === 4) { // May 16
-        document.getElementById("birthdayModal").style.display = "block";
-      }
-    };
-  </script>
-
+  <!-- ⚙️ JavaScript -->
+  <script src="script.js"></script>
 </body>
 </html>
