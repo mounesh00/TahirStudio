@@ -17,8 +17,8 @@ document.addEventListener("DOMContentLoaded", () => {
     modals.forEach(modal => modal.style.display = "none");
   };
 
-  // Smooth scrolling
-  document.querySelectorAll("nav a").forEach(anchor => {
+  // Smooth scrolling for nav links
+  document.querySelectorAll(".navbar a").forEach(anchor => {
     anchor.addEventListener("click", function (e) {
       e.preventDefault();
       const section = document.querySelector(this.getAttribute("href"));
@@ -28,9 +28,9 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  // 🎂 Show Birthday Modal (Simulated)
-  const today = new Date(2025, 4, 16); // May 16, 2025
-  const isBirthday = today.getDate() === 16 && today.getMonth() === 4;
+  // 🎂 Birthday Modal - show on May 16
+  const now = new Date();
+  const isBirthday = now.getDate() === 16 && now.getMonth() === 4; // May = 4 (0-indexed)
 
   if (isBirthday) {
     const modal = document.getElementById("birthdayModal");
