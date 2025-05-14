@@ -3,58 +3,210 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <meta name="description" content="Tahir.Studio - Premium pre-wedding and wedding photography services" />
-  <meta name="keywords" content="wedding photography, pre-wedding shoot, cinematic wedding, Tahir Studio" />
-  <meta name="author" content="Tahir.Studio" />
-  <title>Tahir.Studio | Wedding Photography</title>
-  <link rel="stylesheet" href="style.css" />
+  <title>Tahir.Studio</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #f9fafb;
+    }
+
+    .navbar {
+      background-color: black;
+      color: white;
+      padding: 15px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .navbar-title {
+      font-size: 20px;
+      font-weight: bold;
+    }
+
+    .menu-toggle {
+      font-size: 24px;
+      cursor: pointer;
+      display: none;
+    }
+
+    .navbar ul {
+      list-style: none;
+      display: flex;
+      gap: 20px;
+      padding: 0;
+      margin: 0;
+    }
+
+    .navbar li {
+      cursor: pointer;
+    }
+
+    .content {
+      padding: 20px;
+    }
+
+    h2 {
+      text-align: center;
+      color: #1f2937;
+      font-size: 1.8em;
+    }
+
+    .video-wrapper {
+      margin: 20px auto;
+      max-width: 600px;
+    }
+
+    video {
+      width: 100%;
+      height: auto;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    }
+
+    /* Modal */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      padding-top: 100px;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgba(0, 0, 0, 0.5);
+      animation: fadeIn 1s ease-in;
+    }
+
+    .modal-content {
+      background-color: #fff4cc;
+      margin: auto;
+      padding: 30px;
+      border: 2px solid #facc15;
+      width: 80%;
+      max-width: 500px;
+      text-align: center;
+      border-radius: 10px;
+      animation: slideDown 0.5s ease-out;
+    }
+
+    .close-button {
+      color: #333;
+      float: right;
+      font-size: 32px;
+      font-weight: bold;
+      cursor: pointer;
+      padding: 5px;
+    }
+
+    @keyframes fadeIn {
+      from {opacity: 0;}
+      to {opacity: 1;}
+    }
+
+    @keyframes slideDown {
+      from {transform: translateY(-50px); opacity: 0;}
+      to {transform: translateY(0); opacity: 1;}
+    }
+
+    /* Responsive */
+    @media screen and (max-width: 600px) {
+      .menu-toggle {
+        display: block;
+      }
+
+      .navbar ul {
+        flex-direction: column;
+        background: black;
+        display: none;
+        width: 100%;
+        margin-top: 10px;
+      }
+
+      .navbar ul.show {
+        display: flex;
+      }
+
+      h2 {
+        font-size: 1.4em;
+      }
+
+      .modal-content {
+        width: 90%;
+        padding: 20px;
+      }
+    }
+  </style>
 </head>
 <body>
 
-  <header>
-    <h1>Tahir.Studio</h1>
-    <nav>
-      <ul>
-        <li><a href="#home">Home</a></li>
-        <li><a href="#portfolio">Portfolio</a></li>
-        <li><a href="#bts">Videos</a></li>
-        <li><a href="#contact">Contact</a></li>
-      </ul>
-    </nav>
-  </header>
-
-  <section id="bts">
-    <h2>Behind the Scenes</h2>
-    <div class="video-row">
-      <div class="video-wrapper">
-        <h3>Wedding Cinematic</h3>
-        <video controls autoplay muted loop>
-          <source src="videos/bts-wedding.mp4" type="video/mp4" />
-          Your browser does not support the video tag.
-        </video>
-      </div>
-      <div class="video-wrapper">
-        <h3>Pre-Wedding Highlights</h3>
-        <video controls autoplay muted loop>
-          <source src="videos/bts2-prewedding.mp4" type="video/mp4" />
-          Your browser does not support the video tag.
-        </video>
-      </div>
+  <!-- Modal -->
+  <div id="birthdayModal" class="modal">
+    <div class="modal-content">
+      <span class="close-button" onclick="closeModal()">&times;</span>
+      <h2>Happy Birthday, Mutahir Hukkeri!</h2>
+      <p>Wishing you a year full of magic, moments, and movies!</p>
     </div>
-  </section>
+  </div>
 
-  <section id="contact">
-    <h2>Contact Us</h2>
-    <p>If you have any questions or would like to book a shoot, feel free to reach out!</p>
-    <p><strong>Email:</strong> mutahirhukkeri567@gmail.com</p>
-    <p><strong>Phone:</strong> +91-7349107886</p>
-    <p>We look forward to capturing your special moments!</p>
-  </section>
+  <!-- Navbar -->
+  <div class="navbar">
+    <div class="navbar-title">Tahir.Studio</div>
+    <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+    <ul id="navbarMenu">
+      <li>Home</li>
+      <li>Portfolio</li>
+      <li>Videos</li>
+      <li>Contact</li>
+    </ul>
+  </div>
 
-  <footer>
-    <p>&copy; 2025 Tahir.Studio. All rights reserved.</p>
-  </footer>
+  <!-- Main Content -->
+  <div class="content">
+    <h2>Behind the Scenes</h2>
+    <div class="video-wrapper">
+      <video src="videos/behind-scenes.mp4" controls></video>
+    </div>
 
-  <script src="scripts/main.js"></script>
+    <h2>Wedding Cinematic</h2>
+    <div class="video-wrapper">
+      <video src="videos/wedding-cinematic.mp4" controls></video>
+    </div>
+
+    <h2>Pre-Wedding Highlights</h2>
+    <div class="video-wrapper">
+      <video src="videos/pre-wedding.mp4" controls></video>
+    </div>
+  </div>
+
+  <script>
+    function closeModal() {
+      document.getElementById("birthdayModal").style.display = "none";
+    }
+
+    function toggleMenu() {
+      const menu = document.getElementById("navbarMenu");
+      menu.classList.toggle("show");
+    }
+
+    window.onload = function () {
+      const today = new Date();
+      const isBirthday =
+        today.getDate() === 16 &&
+        today.getMonth() === 4 && // May = 4
+        today.getFullYear() === 2025;
+
+      if (isBirthday) {
+        document.getElementById("birthdayModal").style.display = "block";
+      }
+    };
+  </script>
 </body>
 </html>
