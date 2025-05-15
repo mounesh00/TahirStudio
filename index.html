@@ -2,75 +2,278 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Tahir.Studio</title>
-  <link rel="stylesheet" href="style.css" />
-  <script src="main.js" defer></script>
+  <style>
+    /* Reset & base */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: #f5f5f5;
+      color: #333;
+      line-height: 1.6;
+    }
+
+    /* Navbar */
+    .navbar {
+      background-color: #222;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 20px;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .navbar-title {
+      font-size: 1.5rem;
+      font-weight: bold;
+    }
+
+    .menu-toggle {
+      font-size: 1.8rem;
+      cursor: pointer;
+      display: none;
+    }
+
+    .navbar-menu {
+      list-style: none;
+      display: flex;
+      gap: 20px;
+    }
+
+    .navbar-menu li a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .navbar-menu.show {
+      display: block;
+    }
+
+    .book-btn {
+      background-color: #ff6f61;
+      color: white;
+      border: none;
+      padding: 8px 16px;
+      cursor: pointer;
+      border-radius: 4px;
+      font-weight: bold;
+      transition: background-color 0.3s ease;
+    }
+
+    .book-btn:hover {
+      background-color: #ff3b2e;
+    }
+
+    /* Responsive Navbar */
+    @media (max-width: 768px) {
+      .menu-toggle {
+        display: block;
+      }
+      .navbar-menu {
+        display: none;
+        flex-direction: column;
+        background-color: #222;
+        position: absolute;
+        top: 55px;
+        right: 0;
+        width: 150px;
+        border-radius: 0 0 0 5px;
+      }
+      .navbar-menu li {
+        padding: 10px;
+      }
+    }
+
+    /* Content */
+    .content {
+      padding: 40px 20px;
+      max-width: 1000px;
+      margin: auto;
+    }
+
+    /* Portfolio */
+    .portfolio-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+    }
+
+    .portfolio-item img {
+      width: 100%;
+      border-radius: 8px;
+    }
+
+    .portfolio-item p {
+      margin-top: 8px;
+      font-style: italic;
+      color: #555;
+    }
+
+    /* Videos */
+    .video-wrapper {
+      margin-bottom: 40px;
+    }
+
+    video {
+      width: 100%;
+      border-radius: 8px;
+    }
+
+    /* Footer */
+    footer {
+      background-color: #222;
+      color: #aaa;
+      text-align: center;
+      padding: 20px 0;
+      margin-top: 40px;
+    }
+
+    /* Modal Styles */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1100;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow-y: auto;
+      background-color: rgba(0,0,0,0.7);
+    }
+
+    .modal-content {
+      background-color: #fff;
+      margin: 80px auto;
+      padding: 20px 30px;
+      border-radius: 10px;
+      max-width: 600px;
+      position: relative;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    }
+
+    .close-button {
+      position: absolute;
+      top: 15px;
+      right: 20px;
+      font-size: 28px;
+      font-weight: bold;
+      color: #333;
+      cursor: pointer;
+      transition: color 0.3s ease;
+    }
+
+    .close-button:hover {
+      color: #ff6f61;
+    }
+
+    .birthday-img {
+      width: 100%;
+      max-width: 350px;
+      border-radius: 10px;
+      margin: 20px auto 0 auto;
+      display: block;
+    }
+
+    /* Enquiry Modal Enhancement */
+    #enquiryModal .modal-content {
+      max-width: 700px;
+      padding: 0;
+      overflow: hidden;
+    }
+
+    #enquiryModal h2 {
+      margin: 20px;
+      color: #333;
+      font-size: 1.8rem;
+      border-bottom: 2px solid #ff6f61;
+      padding-bottom: 10px;
+    }
+
+    #enquiryModal iframe {
+      border: none;
+      width: 100%;
+      height: 600px;
+    }
+
+    /* Responsive iframe */
+    @media (max-width: 768px) {
+      #enquiryModal iframe {
+        height: 500px;
+      }
+    }
+  </style>
 </head>
 <body>
 
-  <!-- 📆 Birthday Modal -->
-  <div id="birthdayModal" class="modal">
+  <!-- Birthday Modal -->
+  <div id="birthdayModal" class="modal" aria-hidden="true" role="dialog" aria-labelledby="birthdayTitle" aria-modal="true">
     <div class="modal-content">
-      <span class="close-button" onclick="closeModal()">&times;</span>
-      <h2>🎉 Happy Birthday, Mutahir Hukkeri!</h2>
+      <button class="close-button" aria-label="Close" onclick="closeModal()">&times;</button>
+      <h2 id="birthdayTitle">🎉 Happy Birthday, Mutahir Hukkeri!</h2>
       <p>Wishing you a year full of magic, memories, and beautiful frames!</p>
       <img src="mutahir.jpg" alt="Mutahir Hukkeri" class="birthday-img" />
     </div>
   </div>
 
-  <!-- 📸 Enquiry Modal with embedded Google Form -->
-  <div id="enquiryModal" class="modal">
+  <!-- Enquiry Modal -->
+  <div id="enquiryModal" class="modal" aria-hidden="true" role="dialog" aria-labelledby="enquiryTitle" aria-modal="true">
     <div class="modal-content">
-      <span class="close-button" onclick="closeModal()">&times;</span>
-      <h2>Book Your Shoot</h2>
+      <button class="close-button" aria-label="Close" onclick="closeModal()">&times;</button>
+      <h2 id="enquiryTitle">Book Your Shoot</h2>
       <iframe 
         src="https://docs.google.com/forms/d/e/1FAIpQLSeStTxD6ZnF8Ffkfip74Ihy-RoBFZZkDqV295k9A8wPzTpaMA/viewform?embedded=true" 
-        width="100%" 
-        height="600" 
-        frameborder="0" 
-        marginheight="0" 
-        marginwidth="0"
-        >Loading…</iframe>
+        loading="lazy"
+        allowfullscreen
+        ></iframe>
     </div>
   </div>
 
-  <!-- 🧭 Navbar -->
-  <div class="navbar">
+  <!-- Navbar -->
+  <nav class="navbar" role="navigation" aria-label="Main Navigation">
     <div class="navbar-title">Tahir.Studio</div>
-    <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+    <button class="menu-toggle" aria-label="Toggle Menu" aria-expanded="false" onclick="toggleMenu()">☰</button>
     <ul id="navbarMenu" class="navbar-menu">
-      <li><a href="#home">Home</a></li>
-      <li><a href="#portfolio">Portfolio</a></li>
-      <li><a href="#videos">Videos</a></li>
-      <li><a href="#contact">Contact</a></li>
+      <li><a href="#home" tabindex="0">Home</a></li>
+      <li><a href="#portfolio" tabindex="0">Portfolio</a></li>
+      <li><a href="#videos" tabindex="0">Videos</a></li>
+      <li><a href="#contact" tabindex="0">Contact</a></li>
     </ul>
     <button class="book-btn" onclick="openModal()">Book Now</button>
-  </div>
+  </nav>
 
-  <!-- 🏡 Home Section -->
-  <div class="content" id="home">
+  <!-- Home Section -->
+  <section class="content" id="home" tabindex="-1">
     <h2>Welcome to Tahir.Studio</h2>
     <p>Capturing moments that last a lifetime</p>
-  </div>
+  </section>
 
-  <!-- 🖼️ Portfolio Section -->
-  <div class="content" id="portfolio">
+  <!-- Portfolio Section -->
+  <section class="content" id="portfolio" tabindex="-1">
     <h2>Our Work</h2>
     <div class="portfolio-grid">
-      <div class="portfolio-item">
+      <article class="portfolio-item">
         <img src="Tahir3.jpg" alt="Traditional Dress Shoot" />
         <p>Grace in traditional attire – capturing brotherhood and elegance through our lens.</p>
-      </div>
-      <div class="portfolio-item">
+      </article>
+      <article class="portfolio-item">
         <img src="Tahir4.jpg" alt="Wedding Setup" />
         <p>A calm artist behind the lens – ready to freeze your special moments in time.</p>
-      </div>
+      </article>
     </div>
-  </div>
+  </section>
 
-  <!-- 🎞️ Videos Section -->
-  <div class="content" id="videos">
+  <!-- Videos Section -->
+  <section class="content" id="videos" tabindex="-1">
     <h2>Behind the Scenes</h2>
     <div class="video-wrapper">
       <video src="videos/bts-wedding.mp4" controls></video>
@@ -79,19 +282,61 @@
     <div class="video-wrapper">
       <video src="videos/bts2-prewedding.mp4" controls></video>
     </div>
-  </div>
+  </section>
 
-  <!-- 📞 Contact Section -->
-  <div class="content" id="contact">
+  <!-- Contact Section -->
+  <section class="content" id="contact" tabindex="-1">
     <h2>Contact Us</h2>
-    <p><strong>Email:</strong> mutahirhukkeri567@tahirstudio.com</p>
-    <p><strong>Phone:</strong> +91-7349107886</p>
-  </div>
+    <p><strong>Email:</strong> <a href="mailto:mutahirhukkeri567@tahirstudio.com">mutahirhukkeri567@tahirstudio.com</a></p>
+    <p><strong>Phone:</strong> <a href="tel:+917349107886">+91-7349107886</a></p>
+  </section>
 
-  <!-- 🔚 Footer -->
+  <!-- Footer -->
   <footer>
     <p>&copy; 2025 Tahir.Studio. All rights reserved.</p>
   </footer>
 
-</body>
-</html>
+  <script>
+  // Open enquiry modal
+  function openModal() {
+    const modal = document.getElementById('enquiryModal');
+    modal.style.display = 'block';
+    modal.setAttribute('aria-hidden', 'false');
+  }
+
+  // Close both modals
+  function closeModal() {
+    ['enquiryModal', 'birthdayModal'].forEach(id => {
+      const modal = document.getElementById(id);
+      modal.style.display = 'none';
+      modal.setAttribute('aria-hidden', 'true');
+    });
+  }
+
+  // Toggle Navbar menu for small screens
+  function toggleMenu() {
+    const menu = document.getElementById('navbarMenu');
+    const btn = document.querySelector('.menu-toggle');
+    if (menu.classList.contains('show')) {
+      menu.classList.remove('show');
+      btn.setAttribute('aria-expanded', 'false');
+    } else {
+      menu.classList.add('show');
+      btn.setAttribute('aria-expanded', 'true');
+    }
+  }
+
+  // Ensure only one video plays at a time
+  document.addEventListener('DOMContentLoaded', () => {
+    const videos = document.querySelectorAll('video');
+    videos.forEach(video => {
+      video.addEventListener('play', () => {
+        videos.forEach(v => {
+          if (v !== video) {
+            v.pause();
+          }
+        });
+      });
+    });
+  });
+</script>

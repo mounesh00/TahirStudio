@@ -1,25 +1,40 @@
 // Open enquiry modal
 function openModal() {
-  document.getElementById('enquiryModal').style.display = 'block';
+  const modal = document.getElementById('enquiryModal');
+  modal.style.display = 'block';
+  modal.setAttribute('aria-hidden', 'false');
 }
 
 // Close both modals (enquiry and birthday)
 function closeModal() {
-  document.getElementById('enquiryModal').style.display = 'none';
-  document.getElementById('birthdayModal').style.display = 'none';
+  ['enquiryModal', 'birthdayModal'].forEach(id => {
+    const modal = document.getElementById(id);
+    modal.style.display = 'none';
+    modal.setAttribute('aria-hidden', 'true');
+  });
 }
 
-// Toggle Navbar menu for small screens
+// Toggle Navbar menu for small screens with ARIA
 function toggleMenu() {
   const menu = document.getElementById('navbarMenu');
-  menu.classList.toggle('show');
+  const btn = document.querySelector('.menu-toggle');
+  const isExpanded = btn.getAttribute('aria-expanded') === 'true';
+  if (isExpanded) {
+    menu.classList.remove('show');
+    btn.setAttribute('aria-expanded', 'false');
+  } else {
+    menu.classList.add('show');
+    btn.setAttribute('aria-expanded', 'true');
+  }
 }
 
 // 🎉 Open birthday modal automatically ONLY on May 16
 function checkBirthday() {
   const today = new Date();
-  if (today.getMonth() === 4 && today.getDate() === 16) { // May = 4
-    document.getElementById('birthdayModal').style.display = 'block';
+  if (today.getDate() === 16 && today.getMonth() === 4) { // May = 4 (zero-based)
+    const modal = document.getElementById('birthdayModal');
+    modal.style.display = 'block';
+    modal.setAttribute('aria-hidden', 'false');
   }
 }
 
@@ -30,10 +45,24 @@ window.onclick = function(event) {
 
   if (event.target === enquiryModal) {
     enquiryModal.style.display = 'none';
+    enquiryModal.setAttribute('aria-hidden', 'true');
   }
   if (event.target === birthdayModal) {
     birthdayModal.style.display = 'none';
+    birthdayModal.setAttribute('aria-hidden', 'true');
   }
 }
 
+// Pause all videos except the one playing
+document.querySelectorAll('video').forEach(video => {
+  video.addEventListener('play', () => {
+    document.querySelectorAll('video').forEach(otherVideo => {
+      if (otherVideo !== video) {
+        otherVideo.pause();
+      }
+    });
+  });
+});
+
+// Run birthday check on page load
 window.onload = checkBirthday;
