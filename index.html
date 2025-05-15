@@ -9,14 +9,16 @@
 </head>
 <body>
 
-  <!-- 🎂 Birthday Modal -->
-  <div id="birthdayModal" class="modal" role="dialog" aria-modal="true" aria-labelledby="birthdayTitle">
-    <div class="modal-content">
-      <span class="close-button" role="button" tabindex="0" aria-label="Close birthday modal">&times;</span>
-      <h2 id="birthdayTitle">🎉 Happy Birthday, Mutahir Hukkeri!</h2>
-      <p>Wishing you a year full of magic, memories, and beautiful frames!</p>
-    </div>
+ <!-- 📆 Birthday Modal -->
+<div id="birthdayModal" class="modal" role="dialog" aria-modal="true" aria-labelledby="birthdayTitle" aria-describedby="birthdayDesc">
+  <div class="modal-content birthday-modal-content">
+    <span class="close-button" onclick="closeModal()" tabindex="0" aria-label="Close Birthday Modal">&times;</span>
+    <h2 id="birthdayTitle">🎉 Happy Birthday, Mutahir Hukkeri!</h2>
+    <img src="images/mutahir.jpg" alt="Mutahir Hukkeri smiling" class="birthday-photo" />
+    <p id="birthdayDesc">Wishing you a year full of magic, memories, and beautiful frames!</p>
   </div>
+</div>
+
 
   <!-- 📩 Enquiry Modal -->
   <div id="enquiryModal" class="modal" role="dialog" aria-modal="true" aria-labelledby="enquiryTitle">
@@ -45,6 +47,26 @@
     <h2>Welcome to Tahir.Studio</h2>
     <p>Capturing moments that last a lifetime</p>
   </section>
+
+  <div class="content" id="home">
+  <h2>Welcome to Tahir.Studio</h2>
+  <p>Capturing moments that last a lifetime</p>
+</div>
+
+<!-- 📸 Portfolio Section -->
+<div class="content" id="portfolio">
+  <h2>Our Portfolio</h2>
+  <div class="portfolio-gallery">
+    <div class="portfolio-item">
+      <img src="images/Tahir3.jpg" alt="Traditional Portrait of Tahir and Friend" />
+      <p>Timeless friendship and traditional elegance captured under natural light.</p>
+    </div>
+    <div class="portfolio-item">
+      <img src="images/Tahir4.jpg" alt="Tahir with camera at a floral wedding setup" />
+      <p>Tahir in his element — ready to capture unforgettable memories at a stunning floral wedding setup.</p>
+    </div>
+  </div>
+</div>
 
   <!-- 🎥 Videos -->
   <section class="content" id="videos">

@@ -162,3 +162,36 @@ footer {
     font-size: 1.4em;
   }
 }
+
+/* Portfolio Section */
+.portfolio-gallery {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 30px;
+  padding: 20px 0;
+}
+
+.portfolio-item {
+  max-width: 400px;
+  text-align: center;
+}
+
+.portfolio-item img {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease-in-out;
+}
+
+.portfolio-item img:hover {
+  transform: scale(1.03);
+}
+
+.portfolio-item p {
+  margin-top: 10px;
+  color: #333;
+  font-size: 1rem;
+  line-height: 1.4;
+}
