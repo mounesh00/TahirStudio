@@ -178,3 +178,31 @@ footer {
   margin-left: auto;
   margin-right: auto;
 }
+
+/* Enquiry Modal Enhancement */
+#enquiryModal .modal-content {
+  max-width: 700px;
+  padding: 0;
+  overflow: hidden;
+}
+
+#enquiryModal h2 {
+  margin: 20px;
+  color: #333;
+  font-size: 1.8rem;
+  border-bottom: 2px solid #ff6f61;
+  padding-bottom: 10px;
+}
+
+#enquiryModal iframe {
+  border: none;
+  width: 100%;
+  height: 600px;
+}
+
+/* Enhance iframe responsiveness */
+@media (max-width: 768px) {
+  #enquiryModal iframe {
+    height: 500px;
+  }
+}

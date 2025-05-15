@@ -15,10 +15,10 @@ function toggleMenu() {
   menu.classList.toggle('show');
 }
 
-// Optional: Open birthday modal automatically on a specific date (example: May 15)
+// 🎉 Open birthday modal automatically ONLY on May 16
 function checkBirthday() {
   const today = new Date();
-  if (today.getMonth() === 4 && today.getDate() === 15) { // May is month 4 (0-based)
+  if (today.getMonth() === 4 && today.getDate() === 16) { // May = 4
     document.getElementById('birthdayModal').style.display = 'block';
   }
 }
@@ -36,5 +36,4 @@ window.onclick = function(event) {
   }
 }
 
-// Run birthday check on page load
 window.onload = checkBirthday;
