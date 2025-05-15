@@ -41,14 +41,13 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  // 🎉 Show Birthday Modal on May 16
-  const today = new Date();
-  const isBirthday = today.getDate() === 16 && today.getMonth() === 4; // 4 = May
-  const shownThisYear = localStorage.getItem("birthdayYear") === today.getFullYear().toString();
+  // Show Birthday Modal on May 16 every time the page loads (remove localStorage check)
+const today = new Date();
+const isBirthday = today.getDate() === 16 && today.getMonth() === 4; // May is month 4 (0-indexed)
 
-  if (isBirthday && !shownThisYear) {
-    birthdayModal.style.display = "block";
-  }
+if (isBirthday) {
+  birthdayModal.style.display = "block";
+}
 
   // ⏯️ Only One Video Plays at a Time
   const videos = document.querySelectorAll("video");
