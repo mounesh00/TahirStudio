@@ -195,3 +195,46 @@ footer {
   font-size: 1rem;
   line-height: 1.4;
 }
+
+.modal-content form {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+}
+
+.modal-content form label {
+  font-weight: bold;
+}
+
+.modal-content form input,
+.modal-content form textarea {
+  padding: 0.5em;
+  font-size: 1em;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.modal-content form button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 0.75em;
+  font-size: 1em;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+}
+
+.modal-content form button:hover {
+  background-color: #0056b3;
+}
+
+#birthdayModal img {
+  width: 100%;
+  max-width: 300px;  /* Limits max size */
+  height: auto;      /* Maintain aspect ratio */
+  border-radius: 20px; /* Rounded corners, or use 50% for a circle */
+  object-fit: cover; /* Ensures the image fills its box nicely */
+  display: block;
+  margin: 0 auto;    /* Center horizontally */
+}

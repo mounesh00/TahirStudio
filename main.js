@@ -5,33 +5,35 @@ document.addEventListener("DOMContentLoaded", () => {
   const toggleBtn = document.querySelector(".menu-toggle");
   const navbarMenu = document.getElementById("navbarMenu");
 
-  // Toggle Menu
+  // 🧭 Toggle Navbar
   toggleBtn.addEventListener("click", () => {
     navbarMenu.classList.toggle("show");
     toggleBtn.setAttribute("aria-expanded", navbarMenu.classList.contains("show"));
   });
 
-  // Open Modal
+  // 📦 Open Modal
   window.openModal = (id) => {
-    document.getElementById(id).style.display = "block";
+    const modal = document.getElementById(id);
+    if (modal) {
+      modal.style.display = "block";
+    }
   };
 
-  // Close Modals on outside click
+  // ❌ Close Modals on outside click
   window.addEventListener("click", (e) => {
-    modals.forEach(modal => {
+    modals.forEach((modal) => {
       if (e.target === modal) {
         modal.style.display = "none";
       }
     });
   });
 
-  // Close Modals on button click
-  document.querySelectorAll(".close-button").forEach(btn => {
+  // ❌ Close Buttons (with keyboard support)
+  document.querySelectorAll(".close-button").forEach((btn) => {
     btn.addEventListener("click", () => {
       btn.closest(".modal").style.display = "none";
     });
 
-    // Allow keyboard close
     btn.addEventListener("keypress", (e) => {
       if (e.key === "Enter") {
         btn.click();
@@ -39,25 +41,56 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  // Show Birthday Modal on May 16
+  // 🎉 Show Birthday Modal on May 16
   const today = new Date();
-  const isBirthday = today.getDate() === 16 && today.getMonth() === 4;
+  const isBirthday = today.getDate() === 16 && today.getMonth() === 4; // 4 = May
   const shownThisYear = localStorage.getItem("birthdayYear") === today.getFullYear().toString();
 
   if (isBirthday && !shownThisYear) {
     birthdayModal.style.display = "block";
-    localStorage.setItem("birthdayYear", today.getFullYear());
   }
 
-  // Only one video plays at a time
+  // ⏯️ Only One Video Plays at a Time
   const videos = document.querySelectorAll("video");
-  videos.forEach(video => {
+  videos.forEach((video) => {
     video.addEventListener("play", () => {
-      videos.forEach(other => {
+      videos.forEach((other) => {
         if (other !== video && !other.paused) {
           other.pause();
         }
       });
     });
   });
+
+  // 📩 Booking Form Submission (Formspree)
+  const bookingForm = document.getElementById("bookingForm");
+  if (bookingForm) {
+    bookingForm.addEventListener("submit", async (e) => {
+      e.preventDefault();
+
+      const formData = new FormData(bookingForm);
+      const responseDiv = document.getElementById("formMessage");
+
+      try {
+        const response = await fetch("https://formspree.io/f/xkgrkadj", {
+          method: "POST",
+          body: formData,
+          headers: { Accept: "application/json" },
+        });
+
+        if (response.ok) {
+          responseDiv.textContent = "✅ Thank you! Your booking request has been sent.";
+          responseDiv.style.color = "green";
+          bookingForm.reset();
+        } else {
+          const data = await response.json();
+          responseDiv.textContent = data.error || "❌ Oops! Something went wrong.";
+          responseDiv.style.color = "red";
+        }
+      } catch (error) {
+        responseDiv.textContent = "❌ Network error while submitting the form.";
+        responseDiv.style.color = "red";
+      }
+    });
+  }
 });

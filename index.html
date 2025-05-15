@@ -15,7 +15,7 @@
     <span class="close-button" onclick="closeModal()" tabindex="0" aria-label="Close Birthday Modal">&times;</span>
     <h2 id="birthdayTitle">🎉 Happy Birthday, Mutahir Hukkeri!</h2>
     <img src="images/mutahir.jpg" alt="Mutahir Hukkeri smiling" class="birthday-photo" />
-    <p id="birthdayDesc">Wishing you a year full of magic, memories, and beautiful frames!</p>
+    <p id="birthdayDesc">Wishing you a year full of magic, memories, and beautiful frames loude!</p>
   </div>
 </div>
 
@@ -25,7 +25,49 @@
     <div class="modal-content">
       <span class="close-button" role="button" tabindex="0" aria-label="Close enquiry modal">&times;</span>
       <h2 id="enquiryTitle">Book Your Shoot</h2>
-      <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSe_sample_form_link/viewform?embedded=true" width="100%" height="500" frameborder="0" allowfullscreen></iframe>
+<form id="bookingForm" action="https://formspree.io/f/xkgrkadj" method="POST">
+  
+  <!-- Disable CAPTCHA -->
+  <input type="hidden" name="_captcha" value="false" />
+  
+  <!-- Redirect to thank you page -->
+  <input type="hidden" name="_next" value="https://mounesh00.github.io/TahirStudio/thank-you.html" />
+
+  <label for="name">Full Name:</label>
+  <input type="text" id="name" name="name" required />
+
+  <label for="email">Email:</label>
+  <input type="email" id="email" name="email" required />
+
+  <label for="phone">Phone Number:</label>
+  <input type="tel" id="phone" name="phone" required />
+
+  <label for="service">Service Type / Package:</label>
+  <select id="service" name="service" required>
+    <option value="" disabled selected>Select a service</option>
+    <option value="Wedding Photography">Wedding Photography</option>
+    <option value="Pre-Wedding Shoot">Pre-Wedding Shoot</option>
+    <option value="Event Photography">Event Photography</option>
+    <option value="Portrait Session">Portrait Session</option>
+    <option value="Product Photography">Product Photography</option>
+    <option value="Corporate Shoot">Corporate Shoot</option>
+    <option value="Drone Photography">Drone Photography</option>
+    <option value="Videography Package">Videography Package</option>
+    <option value="Photo Editing & Retouching">Photo Editing & Retouching</option>
+    <option value="Custom Package">Custom Package (Specify in message)</option>
+  </select>
+
+  <label for="date">Preferred Date:</label>
+  <input type="date" id="date" name="date" required />
+
+  <label for="message">Additional Details:</label>
+  <textarea id="message" name="message" placeholder="If you selected Custom Package, please specify details here..."></textarea>
+
+  <button type="submit">Submit</button>
+  <div id="formMessage" style="margin-top: 1em; font-weight: bold;"></div>
+
+</form>
+
     </div>
   </div>
 
@@ -41,6 +83,18 @@
     </ul>
     <button class="book-btn" onclick="openModal('enquiryModal')" aria-haspopup="dialog">Book Now</button>
   </nav>
+
+
+  <!-- Birthday Modal HTML here -->
+  <div id="birthdayModal" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <img src="mutahir.jpg" alt="Birthday Wish" />
+      <h2>Happy Birthday!</h2>
+      <p>Wishing you an amazing year ahead!</p>
+    </div>
+  </div>
+
 
   <!-- 🏠 Home -->
   <section class="content" id="home">
