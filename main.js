@@ -1,57 +1,63 @@
-// Navbar toggle
-const menuToggle = document.getElementById('menu-toggle');
-const navbarMenu = document.getElementById('navbar-menu');
+document.addEventListener("DOMContentLoaded", () => {
+  const birthdayModal = document.getElementById("birthdayModal");
+  const enquiryModal = document.getElementById("enquiryModal");
+  const modals = [birthdayModal, enquiryModal];
+  const toggleBtn = document.querySelector(".menu-toggle");
+  const navbarMenu = document.getElementById("navbarMenu");
 
-menuToggle.addEventListener('click', () => {
-  const expanded = menuToggle.getAttribute('aria-expanded') === 'true';
-  menuToggle.setAttribute('aria-expanded', String(!expanded));
-  navbarMenu.classList.toggle('show');
-});
+  // Toggle Menu
+  toggleBtn.addEventListener("click", () => {
+    navbarMenu.classList.toggle("show");
+    toggleBtn.setAttribute("aria-expanded", navbarMenu.classList.contains("show"));
+  });
 
-// Modal open/close
-const openModalBtn = document.getElementById('open-modal');
-const modal = document.getElementById('enquiryModal');
-const closeModalBtn = document.getElementById('close-modal');
+  // Open Modal
+  window.openModal = (id) => {
+    document.getElementById(id).style.display = "block";
+  };
 
-openModalBtn.addEventListener('click', (e) => {
-  e.preventDefault(); // prevent default link behavior
-  modal.style.display = 'block';
-  navbarMenu.classList.remove('show');
-  menuToggle.setAttribute('aria-expanded', 'false');
-  closeModalBtn.focus();
-});
+  // Close Modals on outside click
+  window.addEventListener("click", (e) => {
+    modals.forEach(modal => {
+      if (e.target === modal) {
+        modal.style.display = "none";
+      }
+    });
+  });
 
-closeModalBtn.addEventListener('click', () => {
-  modal.style.display = 'none';
-  openModalBtn.focus();
-});
+  // Close Modals on button click
+  document.querySelectorAll(".close-button").forEach(btn => {
+    btn.addEventListener("click", () => {
+      btn.closest(".modal").style.display = "none";
+    });
 
-// Close modal if clicking outside modal-content
-window.addEventListener('click', (e) => {
-  if (e.target === modal) {
-    modal.style.display = 'none';
-    openModalBtn.focus();
-  }
-});
+    // Allow keyboard close
+    btn.addEventListener("keypress", (e) => {
+      if (e.key === "Enter") {
+        btn.click();
+      }
+    });
+  });
 
-// Close modal on Escape key press
-window.addEventListener('keydown', (e) => {
-  if (e.key === 'Escape' && modal.style.display === 'block') {
-    modal.style.display = 'none';
-    openModalBtn.focus();
-  }
-});
-
-// Show birthday wish only on May 16
-function checkBirthday() {
+  // Show Birthday Modal on May 16
   const today = new Date();
-  const birthdayWish = document.getElementById('birthday-wish');
+  const isBirthday = today.getDate() === 16 && today.getMonth() === 4;
+  const shownThisYear = localStorage.getItem("birthdayYear") === today.getFullYear().toString();
 
-  if (today.getMonth() === 4 && today.getDate() === 16) {
-    birthdayWish.style.display = 'block';
-  } else {
-    birthdayWish.style.display = 'none';
+  if (isBirthday && !shownThisYear) {
+    birthdayModal.style.display = "block";
+    localStorage.setItem("birthdayYear", today.getFullYear());
   }
-}
 
-checkBirthday();
+  // Only one video plays at a time
+  const videos = document.querySelectorAll("video");
+  videos.forEach(video => {
+    video.addEventListener("play", () => {
+      videos.forEach(other => {
+        if (other !== video && !other.paused) {
+          other.pause();
+        }
+      });
+    });
+  });
+});

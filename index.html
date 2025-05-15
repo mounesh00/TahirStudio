@@ -2,79 +2,73 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>My Portfolio & Booking</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Tahir.Studio</title>
   <link rel="stylesheet" href="style.css" />
-  <style>
-    /* Extra inline styles for portfolio section description */
-    .portfolio-description {
-      max-width: 800px;
-      margin: 20px auto 10px;
-      font-size: 1.1rem;
-      color: #444;
-      text-align: center;
-      line-height: 1.5;
-    }
-  </style>
+  <script src="main.js" defer></script>
 </head>
 <body>
 
-  <!-- Navbar -->
-  <nav class="navbar">
-    <div class="navbar-title">My Website</div>
-    <div class="menu-toggle" id="menu-toggle">&#9776;</div>
-    <ul class="navbar-menu" id="navbar-menu">
-      <li><a href="#">Home</a></li>
-      <li><a href="#portfolio-section">Portfolio</a></li>
-      <li><a href="#">Videos</a></li>
-      <li><a href="#" id="open-modal">Book Now</a></li>
-    </ul>
-  </nav>
-
-  <!-- Birthday Wish (hidden by default) -->
- <div id="birthday-wish" class="birthday-wish" style="display:none;">
-  <h2>Happy Birthday, Mutahir!</h2>
-  <p>Wishing you a fantastic day filled with joy and celebration!</p>
-  <img src="mutahir.jpg" alt="Birthday celebration for Mutahir" class="birthday-img" />
-</div>
-
-
-  <!-- Content -->
-  <div class="content">
-    <h1>Welcome!</h1>
-    <p>This is your website content.</p>
+  <!-- 🎂 Birthday Modal -->
+  <div id="birthdayModal" class="modal" role="dialog" aria-modal="true" aria-labelledby="birthdayTitle">
+    <div class="modal-content">
+      <span class="close-button" role="button" tabindex="0" aria-label="Close birthday modal">&times;</span>
+      <h2 id="birthdayTitle">🎉 Happy Birthday, Mutahir Hukkeri!</h2>
+      <p>Wishing you a year full of magic, memories, and beautiful frames!</p>
+    </div>
   </div>
 
-  <!-- Portfolio Section -->
-  <section id="portfolio-section" class="portfolio-grid">
-    <h2 style="text-align:center; margin-top:40px;">My Portfolio</h2>
-    <p class="portfolio-description">
-      Here are some of my recent projects showcasing creativity and skill. Feel free to explore and reach out if you want to collaborate!
-    </p>
-    <div class="portfolio-item">
-      <img src="Tahir3.jpg" alt="Project Tahir3" />
-      <p>Grace in traditional attire – capturing brotherhood and elegance through our lens..</p>
+  <!-- 📩 Enquiry Modal -->
+  <div id="enquiryModal" class="modal" role="dialog" aria-modal="true" aria-labelledby="enquiryTitle">
+    <div class="modal-content">
+      <span class="close-button" role="button" tabindex="0" aria-label="Close enquiry modal">&times;</span>
+      <h2 id="enquiryTitle">Book Your Shoot</h2>
+      <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSe_sample_form_link/viewform?embedded=true" width="100%" height="500" frameborder="0" allowfullscreen></iframe>
     </div>
-    <div class="portfolio-item">
-      <img src="Tahir4.jpg" alt="Project Tahir4" />
-      <p>A calm artist behind the lens – ready to freeze your special moments in time.</p>
+  </div>
+
+  <!-- 🧭 Navbar -->
+  <nav class="navbar" role="navigation" aria-label="Main">
+    <div class="navbar-title">Tahir.Studio</div>
+    <button class="menu-toggle" aria-controls="navbarMenu" aria-expanded="false" aria-label="Toggle navigation menu">☰</button>
+    <ul id="navbarMenu" class="navbar-menu">
+      <li><a href="#home" tabindex="0">Home</a></li>
+      <li><a href="#portfolio" tabindex="0">Portfolio</a></li>
+      <li><a href="#videos" tabindex="0">Videos</a></li>
+      <li><a href="#contact" tabindex="0">Contact</a></li>
+    </ul>
+    <button class="book-btn" onclick="openModal('enquiryModal')" aria-haspopup="dialog">Book Now</button>
+  </nav>
+
+  <!-- 🏠 Home -->
+  <section class="content" id="home">
+    <h2>Welcome to Tahir.Studio</h2>
+    <p>Capturing moments that last a lifetime</p>
+  </section>
+
+  <!-- 🎥 Videos -->
+  <section class="content" id="videos">
+    <h2>Behind the Scenes</h2>
+    <div class="video-wrapper">
+      <video src="videos/bts-wedding.mp4" controls></video>
+    </div>
+    <h2>Wedding Cinematic</h2>
+    <div class="video-wrapper">
+      <video src="videos/bts2-prewedding.mp4" controls></video>
     </div>
   </section>
 
-  <!-- Modal -->
-  <div class="modal" id="enquiryModal" aria-hidden="true" aria-labelledby="modalTitle" role="dialog">
-    <div class="modal-content">
-      <span class="close-button" id="close-modal" aria-label="Close modal">&times;</span>
-      <h2 id="modalTitle">Book Your Slot</h2>
-      <iframe
-        src="https://docs.google.com/forms/d/e/18zjo-o1PuAeTJnAU-aXyNrYjPGgscuzxBB-C7IVByRQ/viewform?embedded=true"
-        title="Enquiry Form"
-        loading="lazy"
-        style="border:none; width:100%; height:450px; border-radius:8px; box-shadow: 0 4px 12px rgba(0,0,0,0.15);"
-      ></iframe>
-    </div>
-  </div>
+  <!-- 📞 Contact -->
+  <section class="content" id="contact">
+    <h2>Contact Us</h2>
+    <p><strong>Email:</strong> mutahirhukkeri567@tahirstudio.com</p>
+    <p><strong>Phone:</strong> +91-7349107886</p>
+  </section>
 
-  <script src="main.js"></script>
+  <!-- 🔚 Footer -->
+  <footer>
+    <p>&copy; 2025 Tahir.Studio. All rights reserved.</p>
+  </footer>
+
 </body>
 </html>
