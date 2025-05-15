@@ -3,8 +3,19 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Navbar, Modal & Birthday Wish</title>
+  <title>My Portfolio & Booking</title>
   <link rel="stylesheet" href="style.css" />
+  <style>
+    /* Extra inline styles for portfolio section description */
+    .portfolio-description {
+      max-width: 800px;
+      margin: 20px auto 10px;
+      font-size: 1.1rem;
+      color: #444;
+      text-align: center;
+      line-height: 1.5;
+    }
+  </style>
 </head>
 <body>
 
@@ -14,18 +25,19 @@
     <div class="menu-toggle" id="menu-toggle">&#9776;</div>
     <ul class="navbar-menu" id="navbar-menu">
       <li><a href="#">Home</a></li>
-      <li><a href="#">Portfolio</a></li>
+      <li><a href="#portfolio-section">Portfolio</a></li>
       <li><a href="#">Videos</a></li>
       <li><a href="#" id="open-modal">Book Now</a></li>
     </ul>
   </nav>
 
   <!-- Birthday Wish (hidden by default) -->
-  <div id="birthday-wish" class="birthday-wish" style="display:none;">
-    <h2>🎉 Happy Birthday! 🎂</h2>
-    <p>Wishing you an amazing day filled with joy and love.</p>
-    <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=350&q=80" alt="Birthday cake" class="birthday-img" />
-  </div>
+ <div id="birthday-wish" class="birthday-wish" style="display:none;">
+  <h2>Happy Birthday, Mutahir!</h2>
+  <p>Wishing you a fantastic day filled with joy and celebration!</p>
+  <img src="mutahir.jpg" alt="Birthday celebration for Mutahir" class="birthday-img" />
+</div>
+
 
   <!-- Content -->
   <div class="content">
@@ -33,12 +45,33 @@
     <p>This is your website content.</p>
   </div>
 
+  <!-- Portfolio Section -->
+  <section id="portfolio-section" class="portfolio-grid">
+    <h2 style="text-align:center; margin-top:40px;">My Portfolio</h2>
+    <p class="portfolio-description">
+      Here are some of my recent projects showcasing creativity and skill. Feel free to explore and reach out if you want to collaborate!
+    </p>
+    <div class="portfolio-item">
+      <img src="Tahir3.jpg" alt="Project Tahir3" />
+      <p>Grace in traditional attire – capturing brotherhood and elegance through our lens..</p>
+    </div>
+    <div class="portfolio-item">
+      <img src="Tahir4.jpg" alt="Project Tahir4" />
+      <p>A calm artist behind the lens – ready to freeze your special moments in time.</p>
+    </div>
+  </section>
+
   <!-- Modal -->
-  <div class="modal" id="enquiryModal">
+  <div class="modal" id="enquiryModal" aria-hidden="true" aria-labelledby="modalTitle" role="dialog">
     <div class="modal-content">
-      <span class="close-button" id="close-modal">&times;</span>
-      <h2>Book Your Slot</h2>
-      <iframe src="https://example.com/enquiry-form" title="Enquiry Form"></iframe>
+      <span class="close-button" id="close-modal" aria-label="Close modal">&times;</span>
+      <h2 id="modalTitle">Book Your Slot</h2>
+      <iframe
+        src="https://docs.google.com/forms/d/e/18zjo-o1PuAeTJnAU-aXyNrYjPGgscuzxBB-C7IVByRQ/viewform?embedded=true"
+        title="Enquiry Form"
+        loading="lazy"
+        style="border:none; width:100%; height:450px; border-radius:8px; box-shadow: 0 4px 12px rgba(0,0,0,0.15);"
+      ></iframe>
     </div>
   </div>
 
