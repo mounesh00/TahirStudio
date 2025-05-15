@@ -1,41 +1,40 @@
-document.addEventListener("DOMContentLoaded", () => {
-  console.log("Tahir.Studio site loaded!");
+// Open enquiry modal
+function openModal() {
+  document.getElementById('enquiryModal').style.display = 'block';
+}
 
-  // Toggle menu on small screens
-  window.toggleMenu = function () {
-    const menu = document.getElementById("navbarMenu");
-    menu.classList.toggle("show");
-  };
+// Close both modals (enquiry and birthday)
+function closeModal() {
+  document.getElementById('enquiryModal').style.display = 'none';
+  document.getElementById('birthdayModal').style.display = 'none';
+}
 
-  // Modal functions
-  window.openModal = function () {
-    document.getElementById("enquiryModal").style.display = "block";
-  };
+// Toggle Navbar menu for small screens
+function toggleMenu() {
+  const menu = document.getElementById('navbarMenu');
+  menu.classList.toggle('show');
+}
 
-  window.closeModal = function () {
-    const modals = document.querySelectorAll(".modal");
-    modals.forEach(modal => modal.style.display = "none");
-  };
-
-  // Smooth scrolling for nav links
-  document.querySelectorAll(".navbar a").forEach(anchor => {
-    anchor.addEventListener("click", function (e) {
-      e.preventDefault();
-      const section = document.querySelector(this.getAttribute("href"));
-      if (section) {
-        section.scrollIntoView({ behavior: "smooth" });
-      }
-    });
-  });
-
-  // 🎂 Birthday Modal - show on May 16
-  const now = new Date();
-  const isBirthday = now.getDate() === 16 && now.getMonth() === 4; // May = 4 (0-indexed)
-
-  if (isBirthday) {
-    const modal = document.getElementById("birthdayModal");
-    if (modal) {
-      modal.style.display = "block";
-    }
+// Optional: Open birthday modal automatically on a specific date (example: May 15)
+function checkBirthday() {
+  const today = new Date();
+  if (today.getMonth() === 4 && today.getDate() === 15) { // May is month 4 (0-based)
+    document.getElementById('birthdayModal').style.display = 'block';
   }
-});
+}
+
+// Close modals when clicking outside modal content
+window.onclick = function(event) {
+  const enquiryModal = document.getElementById('enquiryModal');
+  const birthdayModal = document.getElementById('birthdayModal');
+
+  if (event.target === enquiryModal) {
+    enquiryModal.style.display = 'none';
+  }
+  if (event.target === birthdayModal) {
+    birthdayModal.style.display = 'none';
+  }
+}
+
+// Run birthday check on page load
+window.onload = checkBirthday;

@@ -9,24 +9,29 @@
 </head>
 <body>
 
-  <!-- 🎂 Birthday Modal -->
+  <!-- 📆 Birthday Modal -->
   <div id="birthdayModal" class="modal">
     <div class="modal-content">
       <span class="close-button" onclick="closeModal()">&times;</span>
       <h2>🎉 Happy Birthday, Mutahir Hukkeri!</h2>
-      <img src="images/mutahir.jpg" alt="Mutahir Photo" style="max-width: 100%; border-radius: 10px; margin: 15px 0;">
       <p>Wishing you a year full of magic, memories, and beautiful frames!</p>
+      <img src="mutahir.jpg" alt="Mutahir Hukkeri" class="birthday-img" />
     </div>
   </div>
 
-  <!-- 📸 Enquiry Modal -->
+  <!-- 📸 Enquiry Modal with embedded Google Form -->
   <div id="enquiryModal" class="modal">
     <div class="modal-content">
       <span class="close-button" onclick="closeModal()">&times;</span>
       <h2>Book Your Shoot</h2>
-      <p><strong>Email:</strong> mutahirhukkeri567@tahirstudio.com</p>
-      <p><strong>Phone:</strong> +91-7349107886</p>
-      <p>We look forward to capturing your special moments!</p>
+      <iframe 
+        src="https://docs.google.com/forms/d/e/1FAIpQLSeStTxD6ZnF8Ffkfip74Ihy-RoBFZZkDqV295k9A8wPzTpaMA/viewform?embedded=true" 
+        width="100%" 
+        height="600" 
+        frameborder="0" 
+        marginheight="0" 
+        marginwidth="0"
+        >Loading…</iframe>
     </div>
   </div>
 
@@ -34,7 +39,7 @@
   <div class="navbar">
     <div class="navbar-title">Tahir.Studio</div>
     <div class="menu-toggle" onclick="toggleMenu()">☰</div>
-    <ul id="navbarMenu">
+    <ul id="navbarMenu" class="navbar-menu">
       <li><a href="#home">Home</a></li>
       <li><a href="#portfolio">Portfolio</a></li>
       <li><a href="#videos">Videos</a></li>
@@ -47,6 +52,21 @@
   <div class="content" id="home">
     <h2>Welcome to Tahir.Studio</h2>
     <p>Capturing moments that last a lifetime</p>
+  </div>
+
+  <!-- 🖼️ Portfolio Section -->
+  <div class="content" id="portfolio">
+    <h2>Our Work</h2>
+    <div class="portfolio-grid">
+      <div class="portfolio-item">
+        <img src="Tahir3.jpg" alt="Traditional Dress Shoot" />
+        <p>Grace in traditional attire – capturing brotherhood and elegance through our lens.</p>
+      </div>
+      <div class="portfolio-item">
+        <img src="Tahir4.jpg" alt="Wedding Setup" />
+        <p>A calm artist behind the lens – ready to freeze your special moments in time.</p>
+      </div>
+    </div>
   </div>
 
   <!-- 🎞️ Videos Section -->
